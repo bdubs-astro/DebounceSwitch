@@ -10,7 +10,7 @@ The initPin() command must be called first. It configures the input pin, and ret
 the switch.
 
 The readPin(int swDelay) command returns the current state (de-bounced), and calls 
-the cooresponding callback function whenever the state changes.
+the corresponding callback function whenever the state changes.
 
 
 # ESP8266 D1 Mini Implementation
