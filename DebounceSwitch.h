@@ -58,9 +58,9 @@ public:
     
     // configure input pin
     if (extPullup)
-    pinMode(pin,INPUT);       		  // requires external pullup resistor 
+        pinMode(pin,INPUT);       		  // requires external pullup resistor 
     else
-    pinMode(pin,INPUT_PULLUP);    	// use internal pullup resistor
+        pinMode(pin,INPUT_PULLUP);    	// use internal pullup resistor
 }
 
 bool initPin();    
