@@ -12,6 +12,7 @@ the switch.
 The readPin(int swDelay) command returns the current state (de-bounced), and calls 
 the corresponding callback function whenever the state changes.
 
+![image](https://user-images.githubusercontent.com/83251604/124835632-a2b34480-df4f-11eb-8c24-43cae28c3d74.png)
 
 # ESP8266 D1 Mini
 
