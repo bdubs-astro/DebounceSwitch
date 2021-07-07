@@ -13,7 +13,7 @@ The readPin(int swDelay) command returns the current state (de-bounced), and cal
 the corresponding callback function whenever the state changes.
 
 
-# ESP8266 D1 Mini Implementation
+# ESP8266 D1 Mini
 
 ![image](https://user-images.githubusercontent.com/83251604/124826307-af7d6b80-df42-11eb-8ce8-97c496b6cfc2.png)
 Source: https://www.mischianti.org/2021/04/26/wemos-d1-mini-high-resolution-pinout-and-specs/
