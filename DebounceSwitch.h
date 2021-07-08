@@ -38,7 +38,7 @@ void hiCallback() {
   Serial.printf("Switch just went HIGH.\n");
 }
 
-bdubs 7-Jul-2021
+bdubs, 7-Jul-2021
 */
 
 #ifndef DebounceSwitch_h
