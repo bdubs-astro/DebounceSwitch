@@ -6,10 +6,10 @@ The parameters are the GPIO pin #, a flag that's true if using an internal pullu
 resistor, a pair of callback functions that get called when the pin goes either high 
 or low, and a debounce delay in ms. 
 
-The initPin() command must be called first. It configures the input pin, and returns the inital state of 
+The initPin() function must be called first. It configures the input pin, and returns the inital state of 
 the switch.
 
-The readPin(int debounceDelay) command returns the current state (de-bounced), and calls 
+The readPin(int debounceDelay) function returns the current state (de-bounced), and calls 
 the corresponding callback function whenever the state changes.
 
 
