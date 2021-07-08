@@ -1,23 +1,23 @@
 /*
 DebounceSwitch - a class for de-bouncing a mechanical switch
 
-The parameters are the GPIO pin #, a debounce delay in ms, a flag that's true if using 
-an external pullup resistor or false if using an internal pullup resistor, and a 
-pair of callback functions that get called when the pin goes either high or low. 
+The parameters are the GPIO pin #, a flag that's true if using an internal pullup 
+resistor, a pair of callback functions that get called when the pin goes either high 
+or low, and a debounce delay in ms. 
 
 The initPin() command configures the input pin, and returns the inital state of 
 the switch. It must be called first.
 
-The readPin(int swDelay) command returns the current state (de-bounced), and calls 
+The readPin() command returns the current state (de-bounced), and calls 
 the corresponding callback function whenever the state changes.
 
 Usage:
 #include "DebounceSwitch.h"
 const int swPin = 14;     // ESP8266 D5;
-bool extPullup = true;
+bool intPullup = false;
 void loCallback();
 void hiCallback();
-DebounceSwitch mySwitch(swPin,extPullup,loCallback,hiCallback);
+DebounceSwitch mySwitch(swPin, intPullup, loCallback, hiCallback);
 
 void setup() {
     bool swStateInit = mySwitch.initPin(); 
@@ -26,8 +26,8 @@ void setup() {
 }
 
 void loop() {
-    int swDelay = 100;  // debounce delay (ms)
-    bool = mySwitch.readPin(int swDelay);
+    int debounceDelay = 100;  // debounce delay (ms)
+    bool swStateCurr = mySwitch.readPin(int debounceDelay);
 }
 
 void loCallback() {
@@ -49,18 +49,18 @@ bdw 7-Jul-2021
 class DebounceSwitch {
 
 public:
-    DebounceSwitch(const int _pin,bool _extPullup,void (*_loCallback)(void),void (*_hiCallback)(void)) {
+    DebounceSwitch(const int _pin, bool _intPullup, void (*_loCallback)(void), void (*_hiCallback)(void)) {
     
     pin = _pin;
-    extPullup = _extPullup;
+    intPullup = _intPullup;
     loCallback = _loCallback;
     hiCallback = _hiCallback;
     
     // configure input pin
-    if (extPullup)
-        pinMode(pin,INPUT);             // requires external pullup resistor 
+    if (intPullup)
+        pinMode(pin,INPUT_PULLUP);      // use internal pullup resistor 
     else
-        pinMode(pin,INPUT_PULLUP);    	// use internal pullup resistor
+        pinMode(pin,INPUT);    
 }
 
 bool initPin();    
@@ -70,7 +70,7 @@ private:
     void (*loCallback)(void);
     void (*hiCallback)(void);
     int pin;
-    bool extPullup;
+    bool intPullup;
     bool reading;
     bool currState;                       
     bool prevState;  
