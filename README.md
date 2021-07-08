@@ -2,14 +2,14 @@
 
 A class for de-bouncing a mechanical switch.
 
-The parameters are the GPIO pin #, a debounce delay in milliseconds, a flag that's true if using 
-an external pullup resistor or false if using an internal pullup resistor, and a 
-pair of callback functions that get called when the pin goes either high or low. 
+The parameters are the GPIO pin #, a flag that's true if using an internal pullup 
+resistor, a pair of callback functions that get called when the pin goes either high 
+or low, and a debounce delay in ms. 
 
 The initPin() command must be called first. It configures the input pin, and returns the inital state of 
 the switch.
 
-The readPin(int swDelay) command returns the current state (de-bounced), and calls 
+The readPin(int debounceDelay) command returns the current state (de-bounced), and calls 
 the corresponding callback function whenever the state changes.
 
 ![image](https://user-images.githubusercontent.com/83251604/124835632-a2b34480-df4f-11eb-8c24-43cae28c3d74.png)
