@@ -12,9 +12,13 @@ the switch.
 The readPin(int debounceDelay) command returns the current state (de-bounced), and calls 
 the corresponding callback function whenever the state changes.
 
-![image](https://user-images.githubusercontent.com/83251604/124835632-a2b34480-df4f-11eb-8c24-43cae28c3d74.png)
 
-# ESP8266 D1 Mini
+# Digital Inputs: Pullup vs. Pulldown Resistors
+![image](https://user-images.githubusercontent.com/83251604/124932184-da160580-dfd0-11eb-92bd-8c26bc254a17.png)
+
+
+
+# ESP8266 D1 Mini Pinout
 
 ![image](https://user-images.githubusercontent.com/83251604/124826307-af7d6b80-df42-11eb-8ce8-97c496b6cfc2.png)
 Source: https://www.mischianti.org/2021/04/26/wemos-d1-mini-high-resolution-pinout-and-specs/
@@ -23,7 +27,7 @@ Source: https://www.mischianti.org/2021/04/26/wemos-d1-mini-high-resolution-pino
 
 Source: https://randomnerdtutorials.com/esp8266-pinout-reference-gpios/
 
-# ESP32 Dev Kit
+# ESP32 Dev Kit Pinout
 ![image](https://user-images.githubusercontent.com/83251604/124827544-27986100-df44-11eb-92ff-94bd9abdaff3.png)
 
 Source: https://forum.fritzing.org/t/esp32s-hiletgo-dev-boad-with-pinout-template/5357
