@@ -1,6 +1,6 @@
 # DebounceSwitch
 
-A class for de-bouncing a mechanical switch.
+A c++ class for de-bouncing a mechanical switch.
 
 The parameters are the GPIO pin #, a flag that's true if using an internal pullup 
 resistor, a pair of callback functions that get called when the pin goes either high 
