@@ -30,7 +30,7 @@ Source: https://randomnerdtutorials.com/esp8266-pinout-reference-gpios/
 
 <h2>ESP32 Dev Kit Pinout</h2>
 
-<img src = "https://user-images.githubusercontent.com/83251604/124827544-27986100-df44-11eb-92ff-94bd9abdaff3.png" width = "800"/>
+<img src = "https://user-images.githubusercontent.com/83251604/124827544-27986100-df44-11eb-92ff-94bd9abdaff3.png" width = "700"/>
 
 Source: https://forum.fritzing.org/t/esp32s-hiletgo-dev-boad-with-pinout-template/5357
 
