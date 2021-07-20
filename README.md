@@ -30,7 +30,7 @@ Source: https://www.mischianti.org/2021/04/26/wemos-d1-mini-high-resolution-pino
 
 Source: https://randomnerdtutorials.com/esp8266-pinout-reference-gpios/
 
-<h2>ESP32 Dev Kit Pinout</h2>
+<h2>ESP32 Dev Kit C v4 Pinout</h2>
 
 <img src = "https://user-images.githubusercontent.com/83251604/124827544-27986100-df44-11eb-92ff-94bd9abdaff3.png" width = "700"/>
 
