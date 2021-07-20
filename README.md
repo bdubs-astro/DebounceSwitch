@@ -36,3 +36,8 @@ Source: https://randomnerdtutorials.com/esp8266-pinout-reference-gpios/
 
 Source: https://forum.fritzing.org/t/esp32s-hiletgo-dev-boad-with-pinout-template/5357
 
+
+<img src = "https://user-images.githubusercontent.com/83251604/126343552-f84a902b-9b9a-4d7e-a8e7-97ca5a5cb27f.png" width="800"/>
+
+Source: https://www.mischianti.org/2021/07/17/esp32-devkitc-v4-high-resolution-pinout-and-specs/
+
