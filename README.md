@@ -2,9 +2,11 @@
 
 __A c++ class for de-bouncing a mechanical switch.__
 
-The parameters are the GPIO pin #, a flag that's true if using an internal pullup 
-resistor, a pair of callback functions that get called when the pin goes either high 
-or low, and a debounce delay in ms. 
+The parameters are:
+1. a GPIO pin #
+2. a flag that's true if using an internal pullup resistor
+3. a pair of callback functions that get called when the input pin goes either high or low
+4. a debounce delay in milliseconds
 
 :black_small_square: The ___initPin()___ function must be called first. It configures the input pin, and returns the inital state of 
 the switch.
