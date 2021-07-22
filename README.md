@@ -8,11 +8,11 @@ The parameters are:
 3. a pair of callback functions that get called when the input pin goes either high or low
 4. a debounce delay in milliseconds
 
-:black_small_square: The ___initPin()___ function must be called first. It configures the input pin, and returns the inital state of 
+:black_small_square: The ```initPin()``` member function must be called first. It configures the input pin, and returns the inital state of 
 the switch.
 
-:black_small_square: The ___readPin()___ function returns the current state (de-bounced), and calls 
-the corresponding callback function whenever the state changes.
+:black_small_square: The ```readPin(debounceDelay)``` member function returns the current state (de-bounced), and calls 
+the corresponding callback function whenever the pin's state changes.
 
 <h2> Sample Code:</h2>
 
