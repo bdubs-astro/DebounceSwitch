@@ -17,11 +17,11 @@ bool DebounceSwitch::readPin(int debounceDelay) {
   if ( labs(millis() - timePrev) > long(debounceDelay) ) {    // allow to settle
     if (reading != currState) {
       currState = reading;          // update the current state
-		if (currState)
-			hiCallback(); 
-		else
-			loCallback();
-	  }  
+      if (currState)
+	hiCallback(); 
+      else
+	loCallback();
+    }  
   }
   
   prevState = reading;              // update the previous state 
