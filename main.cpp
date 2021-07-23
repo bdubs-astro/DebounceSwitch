@@ -4,7 +4,6 @@
 // I/O ...
 #define swPin 14                // ESP8266 D5
 #define intPullup false         // use internal pullup resistor?
-int debounceDelay = 100;        // (ms)
 void loCallback(), hiCallback();
 DebounceSwitch mySwitch(swPin, intPullup, loCallback, hiCallback);
 #ifndef LED_BUILTIN 
@@ -29,6 +28,7 @@ void setup() {
 }
 
 void loop() {
+  int debounceDelay = 100;        // (ms)
   bool swState = mySwitch.readPin(debounceDelay); 
 }
 
