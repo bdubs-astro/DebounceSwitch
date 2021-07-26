@@ -49,28 +49,28 @@ bdubs, 7-Jul-2021
 class DebounceSwitch {
 
 public:
-    DebounceSwitch(const int _pin, bool _intPullup, void (*_loCallback)(void), void (*_hiCallback)(void)):
-      intPullup(_intPullup), pin(_pin), loCallback(_loCallback), hiCallback(_hiCallback) {
+  DebounceSwitch(const int _pin, bool _intPullup, void (*_loCallback)(void), void (*_hiCallback)(void)):
+    intPullup(_intPullup), pin(_pin), loCallback(_loCallback), hiCallback(_hiCallback) {
     
-      // configure input pin
-      if (intPullup)
-        pinMode(pin, INPUT_PULLUP);     // use internal pullup resistor 
-      else
-        pinMode(pin, INPUT);    
-}
+    // configure input pin
+    if (intPullup)
+      pinMode(pin, INPUT_PULLUP);     // use internal pullup resistor 
+    else
+      pinMode(pin, INPUT);    
+  }
 
-bool initPin();    
-bool readPin(int debounceDelay); 
+  bool initPin();    
+  bool readPin(int debounceDelay); 
     
 private:
-    bool intPullup;
-    int pin;
-    void (*loCallback)(void);
-    void (*hiCallback)(void);
-    bool reading;
-    bool currState;                       
-    bool prevState;  
-    unsigned long timePrev;                  
+  bool intPullup;
+  int pin;
+  void (*loCallback)(void);
+  void (*hiCallback)(void);
+  bool reading;
+  bool currState;                       
+  bool prevState;  
+  unsigned long timePrev;                  
 };
 
 #endif
