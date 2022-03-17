@@ -2,17 +2,17 @@
 
 __A c++ class for de-bouncing a mechanical switch.__
 
-The parameters are:
-1. a GPIO pin #
-2. a flag that's true if using an internal pullup resistor
-3. a pair of callback functions that get called when the input pin goes either high or low
-4. a debounce delay in milliseconds
+- The required parameters are:
+  - the GPIO input pin #
+  - a flag that's true if using an internal pullup resistor, or false otherwise
+  - a pair of callback functions that get called when the input pin goes either  low or high
+  - a debounce delay in milliseconds
 
-:black_small_square: The ```initPin()``` member function must be called first. It configures the input pin, and returns the inital state of 
+- The ```initPin()``` member function must be called first. It configures the input pin, and returns the inital state of 
 the switch.
 
-:black_small_square: The ```readPin(debounceDelay)``` member function returns the current state (de-bounced), and calls 
-the corresponding callback function whenever the pin's state changes.
+- The ```readPin(debounceDelay)``` member function returns the current state (de-bounced), and calls 
+the appropriate callback function whenever the pin's state changes.
 
 <h2> Sample Code:</h2>
 
@@ -20,72 +20,100 @@ the corresponding callback function whenever the pin's state changes.
 #include <Arduino.h>
 #include "DebounceSwitch.h"
 
+#define DEVICE 0    // ! Arduino Nano Every = 0, ESP8266 = 1
+
 // I/O ...
-#define swPin 14                // ESP8266 D5
-#define intPullup false         // use internal pullup resistor?
+#if DEVICE == 0
+// ? Arduino Nano Every
+#define LED_BUILTIN 13          // ? built in LED on pin 13     
+#define LED_ON HIGH             // ? active high
+#define swPin 12                // ? Arduino Nano Every D12
+#define intPullup true          // ? use internal pullup resistor?
+#elif DEVICE == 1
+// ? ESP8266
+#define LED_BUILTIN 2           // ? built in LED on pin 2  
+#define LED_ON LOW              // ? active low
+#define swPin 13                // ? ESP8266 D7
+#define intPullup false         // ? use internal pullup resistor?
+#endif
+
+#ifndef LED 
+#define LED LED_BUILTIN          
+#endif
+
+// configure switch ...
 void loCallback(), hiCallback();
 DebounceSwitch mySwitch(swPin, intPullup, loCallback, hiCallback);
-#ifndef LED_BUILTIN 
-#define LED_BUILTIN 2           // ESP8266
-#endif
 
 void setup() {
   // establish serial comms ...
-  Serial.begin(9600);
+  Serial.begin(115200);
   while(!Serial) {;}                // wait for connection
-  Serial.printf("\n\nSerial monitor connected.\n\n");
+  delay(3000);                      // settling time
+  Serial.println(); Serial.println("Serial monitor connected."); 
+  Serial.println();
 
   // configure indicator LED ...
-  pinMode(LED_BUILTIN, OUTPUT); 
+  pinMode(LED, OUTPUT); 
 
   // initialize switch ...
   bool swStateInit = mySwitch.initPin(); 
-  digitalWrite(LED_BUILTIN, !swStateInit);    // ESP8266 built-in LED is active LOW
-  
+  digitalWrite(LED, swStateInit ? !LED_ON : LED_ON);  // ! active low
+
   const char *swStateStr[] = {"LOW", "HIGH"};
-  Serial.printf("\tInitial input state is %s.\n\n", swStateStr[swStateInit]); 
+  Serial.print("Initial input state is ");
+  Serial.print(swStateStr[swStateInit]);
+  Serial.println("."); Serial.println();
 }
 
 void loop() {
-  int debounceDelay = 100;        // (ms)
-  bool swState = mySwitch.readPin(debounceDelay); 
+  int debounceDelay = 50;           // (ms)
+  mySwitch.readPin(debounceDelay); 
 }
 
 // callback functions ...
 void loCallback() {
-  digitalWrite(LED_BUILTIN, !LOW);          // ESP8266 built-in LED is active LOW
-  Serial.printf("\tInput just went LOW.\n\n"); 
+  digitalWrite(LED, LED_ON);                        // ! active low
+  Serial.println("Input just went LOW."); Serial.println();
 }
 
 void hiCallback() {
-  digitalWrite(LED_BUILTIN, !HIGH);         // ESP8266 built-in LED is active LOW
-  Serial.printf("\tInput just went HIGH.\n\n");
+  digitalWrite(LED, !LED_ON);                       // ! active low
+  Serial.println("Input just went HIGH."); Serial.println();
 }
 ```
 
 <h2> Digital Inputs: Pullup vs. Pulldown Resistors </h2>
 
-<img src = "https://user-images.githubusercontent.com/83251604/124932184-da160580-dfd0-11eb-92bd-8c26bc254a17.png" width = "700"/>
+<img src = "./images for README/NO switch.png" width = "600"/> 
+
+<img src = "./images for README/NC switch.png" width = "600"/> 
 
 
 <h2>ESP8266 D1 Mini Pinout</h2>
 
-<img src = "https://user-images.githubusercontent.com/83251604/124826307-af7d6b80-df42-11eb-8ce8-97c496b6cfc2.png" width = "800"/>
+<img src = "./images for README/WeMos D1 mini pinout.png" width = "800"/>
 
 Source: https://www.mischianti.org/2021/04/26/wemos-d1-mini-high-resolution-pinout-and-specs/
 
-<img src = "https://user-images.githubusercontent.com/83251604/124815934-e13c0580-df35-11eb-96e1-772857aab4bb.png" width = "600"/>
+<img src = "./images for README/WeMos D1 mini pins table.png" width = "600"/>
 
 Source: https://randomnerdtutorials.com/esp8266-pinout-reference-gpios/
 
+
 <h2>ESP32 Dev Kit C v4 Pinout</h2>
 
-<img src = "https://user-images.githubusercontent.com/83251604/124827544-27986100-df44-11eb-92ff-94bd9abdaff3.png" width = "700"/>
+<img src = "./images for README/ESP32 pinout.png" width = "700"/>
 
 Source: https://forum.fritzing.org/t/esp32s-hiletgo-dev-boad-with-pinout-template/5357
 
-
-<img src = "https://user-images.githubusercontent.com/83251604/126343552-f84a902b-9b9a-4d7e-a8e7-97ca5a5cb27f.png" width="800"/>
+<img src = "./images for README/ESP32 LOLIN pinout.png" width="800"/>
 
 Source: https://www.mischianti.org/2021/07/17/esp32-devkitc-v4-high-resolution-pinout-and-specs/
 
+
+<h2>Arduino Nano Every Pinout</h2>
+
+<img src = "./images for README/Arduino Nano Every pinout.png" width="800"/>
+
+Source: https://docs.arduino.cc/hardware/nano-every/
